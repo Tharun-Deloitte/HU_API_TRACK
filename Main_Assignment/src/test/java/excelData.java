@@ -10,8 +10,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class excelData {
+    String excelPath = "src\\resources\\Data.xlsx";
     public String getString(int shet,int row, int column) throws IOException {
-        String excelPath = "src\\resources\\Data.xlsx";
         FileInputStream fis = new FileInputStream(excelPath);
         XSSFWorkbook wb = new XSSFWorkbook(fis);
         XSSFSheet sheet = wb.getSheetAt(shet);
@@ -29,9 +29,6 @@ public class excelData {
         return st;
     }
     public int getAge(int shet, int row, int column) throws IOException {
-
-
-        String excelPath = "src\\resources\\Data.xlsx";
         FileInputStream fis = new FileInputStream(excelPath);
         XSSFWorkbook wb = new XSSFWorkbook(fis);
         XSSFSheet sheet = wb.getSheetAt(shet);
@@ -43,8 +40,6 @@ public class excelData {
         return ag;
     }
     public void writeToken(Object ObjToken,int row,int col) throws IOException {
-
-        String excelPath = "src\\resources\\Data.xlsx";
         FileInputStream fis = new FileInputStream(excelPath);
         XSSFWorkbook wb = new XSSFWorkbook(fis);
         XSSFSheet sheet = wb.getSheetAt(0);
@@ -61,7 +56,6 @@ public class excelData {
     }
 
     public String getToken(int sht,int row,int col) throws IOException {
-        String excelPath = "src\\resources\\Data.xlsx";
         FileInputStream fis = new FileInputStream(excelPath);
         XSSFWorkbook wb = new XSSFWorkbook(fis);
         XSSFSheet sheet = wb.getSheetAt(sht);

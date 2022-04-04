@@ -12,7 +12,6 @@ import static org.hamcrest.Matchers.is;
 public class NegativeTest {
     @Test(priority = 1)
     public void user_already_Register() throws IOException {
-        RestAssured.useRelaxedHTTPSValidation();
         excelData ed = new excelData();
         String nam = ed.getString(2,1, 0);
         String emai = ed.getString(2,1, 1);
@@ -32,7 +31,6 @@ public class NegativeTest {
 
     @Test(priority = 2)
     public void InvalidUserLogin() throws IOException {
-        RestAssured.useRelaxedHTTPSValidation();
         excelData ed = new excelData();
         String emai = "u344sr@gmail.com";
         String pass = "1132342";
@@ -53,7 +51,6 @@ public class NegativeTest {
 
     @Test(priority = 3)
     public void wrong_add_tasks() throws IOException {
-        RestAssured.useRelaxedHTTPSValidation();
         excelData ed=new excelData();
         String token=ed.getToken(0,1,4);
         String task=ed.getToken(1,1,0);

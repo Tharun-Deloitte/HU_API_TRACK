@@ -25,6 +25,9 @@ public class TasksTest {
                     then().
                     log().body().
                     statusCode(HttpStatus.SC_CREATED).extract().response();
+            JSONObject jsonObject = new JSONObject(response.asString());
+            Object object = jsonObject.getJSONObject("data").get("description");
+            assertThat(object, is(task));
         }
     }
     @Test(priority = 2)
