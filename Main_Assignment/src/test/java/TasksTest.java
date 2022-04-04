@@ -3,7 +3,6 @@ import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,20 +14,12 @@ public class TasksTest {
         excelData ed=new excelData();
         String token=ed.getToken(0,1,4);
 
-
         for(int i=1;i<=20;i++){
             String task=ed.getToken(1,i,0);
             data dt=new data(task);
             Response response = given().
                     body(dt).
-                    headers(
-                            "Authorization",
-                            "Bearer " + token,
-                            "Content-Type",
-                            ContentType.JSON,
-                            "Accept",
-                            ContentType.JSON).
-                    // contentType(ContentType.JSON).
+                    headers("Authorization", "Bearer " + token, "Content-Type", ContentType.JSON, "Accept", ContentType.JSON).
                             when().
                     post("https://api-nodejs-todolist.herokuapp.com/task").
                     then().
@@ -58,7 +49,6 @@ public class TasksTest {
                             ContentType.JSON,
                             "Accept",
                             ContentType.JSON).
-                    // contentType(ContentType.JSON).
                             when().
                     get("https://api-nodejs-todolist.herokuapp.com/task").
                     then().

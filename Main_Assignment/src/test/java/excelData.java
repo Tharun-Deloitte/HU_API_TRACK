@@ -10,13 +10,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class excelData {
-    public String getString(int row, int column) throws IOException {
-
-
+    public String getString(int shet,int row, int column) throws IOException {
         String excelPath = "src\\resources\\Data.xlsx";
         FileInputStream fis = new FileInputStream(excelPath);
         XSSFWorkbook wb = new XSSFWorkbook(fis);
-        XSSFSheet sheet = wb.getSheetAt(0);
+        XSSFSheet sheet = wb.getSheetAt(shet);
         XSSFRow r = null;
         XSSFCell cell = null;
         String st= null;
@@ -30,13 +28,13 @@ public class excelData {
         st = cell.getStringCellValue();
         return st;
     }
-    public int getAge( int row, int column) throws IOException {
+    public int getAge(int shet, int row, int column) throws IOException {
 
 
         String excelPath = "src\\resources\\Data.xlsx";
         FileInputStream fis = new FileInputStream(excelPath);
         XSSFWorkbook wb = new XSSFWorkbook(fis);
-        XSSFSheet sheet = wb.getSheetAt(0);
+        XSSFSheet sheet = wb.getSheetAt(shet);
         XSSFRow r = null;
         XSSFCell cell = null;
         r = sheet.getRow(row);

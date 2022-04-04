@@ -13,15 +13,14 @@ public class UserTest {
     @Test(priority = 1)
     public void userRegister() throws IOException {
 
-        // File jsonData = new File("src//test//resources//jsondata.json");
         RestAssured.useRelaxedHTTPSValidation();
         for (int i = 1; i <= 5; i++) {
 
             excelData ed = new excelData();
-            String nam = ed.getString(i, 0);
-            String emai = ed.getString(i, 1);
-            String pass = ed.getString(i, 2);
-            int age = ed.getAge(i, 3);
+            String nam = ed.getString(0,i, 0);
+            String emai = ed.getString(0,i, 1);
+            String pass = ed.getString(0,i, 2);
+            int age = ed.getAge(0,i, 3);
             data dt = new data(nam, emai, pass, age);
             Response response=given().
                     body(dt).
@@ -35,12 +34,8 @@ public class UserTest {
 
             JSONObject jsonObject = new JSONObject(response.asString());
             Object ObjToken = jsonObject.get("token");
-            // System.out.println(ObjToken);
             excelData excelData = new excelData();
             excelData.writeToken(ObjToken,i,4);
-
-            //System.out.println(dt.getAge());
-            //contentType("application/json");
         }
     }
 
@@ -48,8 +43,8 @@ public class UserTest {
     public void userLogin() throws IOException {
 
         excelData ed = new excelData();
-        String emai = ed.getString(1, 1);
-        String pass = ed.getString(1, 2);
+        String emai = ed.getString(0,1, 1);
+        String pass = ed.getString(0,1, 2);
         data dt = new data(emai, pass);
         Response response = given().
                 body(dt).
@@ -60,12 +55,8 @@ public class UserTest {
                 log().body().
                 statusCode(HttpStatus.SC_OK).extract().response();
         JSONObject jsonObject = new JSONObject(response.asString());
-        //System.out.println(jsonObject.getJSONObject("user").get("email"));
         Object obj = jsonObject.getJSONObject("user").get("email");
         assertThat(obj, is(emai));
-        //Object ObjToken = jsonObject.get("token");
-        //excelData excelData = new excelData();
-        //excelData.writeToken(ObjToken);
-        // System.out.println(ObjToken);
+
     }
 }
